@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gastos</title>
+    <link rel="stylesheet" href="./Estilos/estilos.css">
+    <link rel="stylesheet" href="./Estilos/modal.css">
+    <link rel="stylesheet" href="./Estilos/tabla.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/luxon@2.4.0/build/global/luxon.min.js"></script>
+</head>
+
+<header>
+  
+</header>
+
+<body>
+  <div>
+    <button id="addIngresos" class="btn_add">Add</button>
+  </div>
+  <div>
+   <table>
+      <thead>
+        <tr>
+          <th>Dolar Compra</th>
+          <th>Dolar Venta</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th id="dlcompra"></th>
+          <th id="dlventa"></th>
+        </tr>
+      </tbody>
+   </table>
+  </div>
+
+<!-- Tabla de Gastos / Ingresos  -->
+<section class="tablaGastos">
+  <table>
+   
+    <thead>
+      
+      <tr>
+        <th>Fecha</th>
+        <th>Descripción</th>
+        <th>Tipo</th>
+        <th>Efectivo / Banco</th>
+        <th>Monto</th>
+      </tr>
+  </thead>
+
+  <tbody id="cuerpoTabla">
+
+  </tbody>
+
+  <tfoot>
+    <tr>
+      <th>Efectivo</th>
+      <th>Banco</th>
+      <th>Total</th>
+    </tr>
+    <tr>
+      <th>$ <strong id="ef">0</strong></th>
+      <th>$ <strong id="bn">0</strong></th>
+      <th>$ <strong id="ttl">0</strong></th>
+    </tr>
+  </tfoot>
+</table>
+</section>
+
+
+</br>
+
+
+  
+<!-- Modal para el Ingreso de datos -->
+  <section class="modal" id="modal_ingreso">
+
+    <div class="contenedor_Modal">
+
+      <div class="encabezado_Modal">
+        <div>Nuevo Ingreso / Gasto</div>
+        <button class="btn_cerrar" id="btn_cerrarModal">X</button>
+       </div>
+      
+       <div>
+        <form action="" method="post" class="formulario_Modal" id="formulario">
+          <div class="campos_formulario">
+            <label for="">Descripcion: </label>
+            <input type="text" id="descripcion">
+          </div>
+          <div class="campos_formulario">
+            <label for="">Tipo: </label>
+            <select name="" id="tipo" class="tipo" >
+                <option value="Ingreso">Ingreso</option>
+                <option value="Gastos">Gastos</option>
+            </select>
+          </div>
+          <div class="campos_formulario">
+            <label for="">Metodo: </label>
+            <select name="" id="metodo">
+                <option value="Efectivo">Efectivo</option>
+                <option value="Banco">Banco</option>
+            </select>
+          </div>
+          <div class="campos_formulario">
+            <label for="" >Monto: </label>
+            <input type="number" id="monto">
+          </div>
+       </div>
+      <button type="reset" id="Guardar"class="btn_guardar"  > Guardar </button>
+    </form>
+    </div>
+
+  </section>
+
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <script src="./main.js" type="module"></script>
+</body>
+
+
+</html>
