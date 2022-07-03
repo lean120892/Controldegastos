@@ -1,46 +1,56 @@
 
+/* Encabezado de todas las tablas <caption>*/
+   caption{
+   
+    height: 50px;
+    text-align: center;
+    align-items: center;
+    background-color: darkcyan;
+    color: azure;
+    font-size: 18px;
+    margin-bottom: 10px;
+    padding-top: 10px; 
+}
 
+/* Tabla de cotizacion de dolar*/
+.tablaDolar{
+    width: 25%;
+    border-radius: 15px;
+    border-left: solid 1px gainsboro;
+    background-color: beige;
+
+}
+
+/* *Tabla de resultados Parciales */
+.tablaResultados{
+    width: 50%;
+    border-radius: 15px;
+    background-color: beige;
+}
+
+
+/* Tabla de gastos historicos*/
 .tablaGastos{
+    border-radius: 15px;
+    padding: 5px;
+    margin: 5px;
     margin: 100px auto;
     width: 800px;
     height: auto;
     max-height: 1200px;
-
+    background-color: beige;
 }
-    table{
-        background-color: beige;
-        text-align: left;
-        width: 100%;
-        border-collapse: collapse;
-        border: solid 1px black;
-        
-    }
-    td,th,tr{
-        padding: 10px;
-    } 
-
-    thead{
-        border-bottom: solid 5px;
-        text-align: center;
-        background-color: darkcyan;
-        color: white;
-    }
     tr:nth-child(even){
         background-color: gray;
-    }
-
-    tfoot{
-        border-bottom: solid 5px;
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        text-align: center;
-        
-        background-color: darkcyan;
         color: white;
-        border: solid 1px black;
-        border-top: solid 3px;
     }
+    
+
+
+
+
+
+
 
 .btn_remove{
     color:red;

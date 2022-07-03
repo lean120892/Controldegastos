@@ -12,61 +12,115 @@
     <script src="https://cdn.jsdelivr.net/npm/luxon@2.4.0/build/global/luxon.min.js"></script>
 </head>
 
-<header>
+<header id="header">
   
+  <div class="encabezado" id="encabezado">
+      <div class="encabezado-texto" id="encabezado-texto">
+        <p> Comision: #37280-javascript</p>
+        <p> Alumno: de la Viña, Leandro</p>
+        <p> Docente: Piazza, Esteban</p>
+        <p> Tutor: Silva, Brian</p>
+      </div>
+
+      <div class="encabezado-imagen">
+        <img id="img" class="" src="./img/coder1.png" alt="">
+      </div>
+
+  </div>
+
+  <div id="titulo" class="titulo">
+    <p>Control de Gastos Diarios</p> 
+  </div>
+
 </header>
 
 <body>
-  <div>
-    <button id="addIngresos" class="btn_add">Add</button>
-  </div>
-  <div>
-   <table>
-      <thead>
-        <tr>
-          <th>Dolar Compra</th>
-          <th>Dolar Venta</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th id="dlcompra"></th>
-          <th id="dlventa"></th>
-        </tr>
-      </tbody>
-   </table>
-  </div>
 
-<!-- Tabla de Gastos / Ingresos  -->
-<section class="tablaGastos">
-  <table>
+  <div class="contenedorMovimientos">
+    <div class="card cardInfo">
+      <div class="cardTitulo"> Nuevo Movimiento</div>
+      <div class="cardContenido cardBoton" >
+        <button id="addIngresos" class="btn_add">Add</button>
+      </div>
+     
+    </div>
+    <div class="card cardInfo" >
+      <div class="cardTitulo"> Ultimos Movimientos</div>
+      <div class="cardContenido" id="cardInfo1"></div>
+    </div>
+    <div class="card cardInfo">
+      <div class="cardTitulo">Ultimos Movimientos</div>
+      <div class="cardContenido" id="cardInfo2"></div>
+    </div>
+
+  </div>
+ 
+
+    <!-- Tabla de Dolar  -->
+  <section class="contenedor1">
+
+      <table class="tablaDolar">
+        <caption> Cotizacion del Dolar</caption>
+        <thead>
+          <tr>
+            <th>Dolar Compra</th>
+            <th>Dolar Venta</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th id="dlcompra"></th>
+            <th id="dlventa"></th>
+          </tr>
+        </tbody>
+    </table>
+  
+
+      <!-- Tabla de Parciales  -->
+
+      <table class="tablaResultados">
+        <caption>Parciales</caption>
+        <thead>
+          <tr>
+            <th>Efectivo</th>
+            <th>Banco</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>$ <strong id="ef">0</strong></th>
+            <th>$ <strong id="bn">0</strong></th>
+            <th>$ <strong id="ttl">0</strong></th>
+          </tr>
+        </tbody>
+      </table>
+  </section>
    
+  
+
+  <!-- Tabla de Gastos / Ingresos  -->
+<section >
+     
+  <table class="tablaGastos">
+   <caption> Movimientos Historicos</caption>
     <thead>
-      
       <tr>
         <th>Fecha</th>
         <th>Descripción</th>
         <th>Tipo</th>
         <th>Efectivo / Banco</th>
         <th>Monto</th>
+        <th><button id="addIngresos2" class="btn_add"> + </button></th>
       </tr>
   </thead>
 
   <tbody id="cuerpoTabla">
-
+  
   </tbody>
 
   <tfoot>
-    <tr>
-      <th>Efectivo</th>
-      <th>Banco</th>
-      <th>Total</th>
-    </tr>
-    <tr>
-      <th>$ <strong id="ef">0</strong></th>
-      <th>$ <strong id="bn">0</strong></th>
-      <th>$ <strong id="ttl">0</strong></th>
-    </tr>
+   
   </tfoot>
 </table>
 </section>
@@ -119,6 +173,7 @@
 
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   <script src="./main.js" type="module"></script>
+  <script src="./funciones.js" type="module"></script>
 </body>
 
 

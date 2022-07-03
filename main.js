@@ -11,7 +11,7 @@ let fecha=0;
 let descripcion = "";
 let tipo ="";
 let metodo ="";
-let monto = 0;
+ let monto = 0;
 let datos = [];
 let id ="";
 
@@ -34,11 +34,9 @@ let dineroBanco = totalIngresosBanco - totalGastosBanco;
 let dineroEfectivo = totalIngresosEfectivo - totalGastosEfectivo;
 let dineroTotal = dineroBanco + dineroEfectivo;
 
-let dolarCompra=0;
-let dolarVenta =0;
 
 
-
+import efectoHeader from './funciones.js';
 
 
 
@@ -46,35 +44,15 @@ let dolarVenta =0;
 //-------- Eventos -----------------
 
 window.onload = function(){
+    efectoHeader();
    // Recuperar el localstorage
     if(localStorage.getItem("InfoMovimientos").length > 0){
-    datos = JSON.parse(localStorage.getItem("InfoMovimientos")); 
-   
-    Mostrar();
-
-   }  
-
-}
-
-/************************** Api Cotizacion ************************* */
-
-async function CotDolar(){
-
-    const url = 'https://www.dolarsi.com/api/api.php?type=valoresprincipales'
-    const respuesta = await fetch(url);
-   
-    const cotizacion = await respuesta.json();
-   // console.log(cotizacion[0].casa.compra);
-    dolarCompra = cotizacion[0].casa.compra;
-    dolarVenta = cotizacion[0].casa.venta;
-
-    let dlventa = document.getElementById("dlventa");
-    dlventa.innerHTML = dolarVenta;
-    let dlcompra = document.getElementById("dlcompra");
-    dlcompra.innerHTML = dolarCompra;
+        datos = JSON.parse(localStorage.getItem("InfoMovimientos")); 
+         Mostrar();
+         ultimosMovimientos();
+    }  
 
 }
-CotDolar()
 
 
 /************************* Fecha con Luxon ------------------------- */
@@ -98,6 +76,7 @@ class movimientos{
     }
 }
 
+
 /*---------------------------Funcion de nùmeros aleatoreos--------------------------------*/
 
 function Generarid(){
@@ -114,9 +93,8 @@ function Generarid(){
     return ID;
 }
 
-
 /* ------------------------- Funciones para procesar los datos ---------------------------*/
-function ValidarDatos(){
+ function ValidarDatos(){
     /*
         Valida los datos cuando se presiona el boton guardar en el formulario
         de ingreso de datos del modal.
@@ -155,6 +133,27 @@ function GuardarDatos(){
     ActualizarTabla(monto1);
 }
 
+function ultimosMovimientos(){
+    let cardInfo1 = document.getElementById("cardInfo1");
+    let cardInfo2 = document.getElementById("cardInfo2");
+
+    if(datos.length>0){
+        let ultimoMovimiento = datos[datos.length -1];
+        cardInfo1.innerHTML= "<p>Fecha: " +ultimoMovimiento.fecha + "</p> </br> <p>Descripcion: "+ultimoMovimiento.descripcion +" </p> </br> <p>Efectivo / Banco: "+ultimoMovimiento.metodo +"</p> </br> <p> Monto: $ "+ultimoMovimiento.monto +" </p>" 
+    }
+        else{
+            cardInfo1.innerHTML= "<p>Esperando Datos...</p>" 
+        }
+    if(datos.length >=2){
+        let ultimoMovimiento2 = datos[datos.length -2];
+        cardInfo2.innerHTML= "<p>Fecha: " +ultimoMovimiento2.fecha + "</p> </br> <p>Descripcion: "+ultimoMovimiento2.descripcion +" </p> </br> <p>Efectivo / Banco: "+ultimoMovimiento2.metodo +"</p> </br> <p> Monto: $ "+ultimoMovimiento2.monto +" </p>"
+    }
+        else{
+            cardInfo2.innerHTML= "<p>Esperando Datos...</p>" 
+        }
+
+}
+
 
 function CalcularValores (){
     /*
@@ -187,12 +186,20 @@ function CalcularValores (){
  dineroBanco = totalIngresosBanco - totalGastosBanco;
  dineroEfectivo = totalIngresosEfectivo - totalGastosEfectivo;
  dineroTotal = dineroBanco + dineroEfectivo;
+
+ let total = document.getElementById("ttl");
+ total.innerHTML = dineroTotal;
+ let banco = document.getElementById("bn");
+ banco.innerHTML = dineroBanco;
+ let efectivo = document.getElementById("ef");
+ efectivo.innerHTML = dineroEfectivo;
+ console.log(datos)
 }
 
 function Mostrar(){
     
-    CalcularValores();
-    CotDolar();
+    
+
     /*
       Funcion que crea la tabla sobre el HTML al cargar 
       la página
@@ -201,38 +208,30 @@ function Mostrar(){
    let cuerpoTabla = document.getElementById("cuerpoTabla");
     
     for(const dato of datos){
-
         const TR = document.createElement('tr');
-
         for(const propiedad in dato){
               
             if(propiedad == "id"){
                 break;
               }
-                const TH =document.createElement('th');
-                const TextMonto = document.createTextNode(dato[propiedad]);
-                TH.appendChild(TextMonto);
-                TR.appendChild(TH);
+            const TH =document.createElement('th');
+             const TextMonto = document.createTextNode(dato[propiedad]);
+             TH.appendChild(TextMonto);
+             TR.appendChild(TH);
             }
-
-                const TH2 =document.createElement('th');
-                let BotonRemove = document.createElement("button");
-                const TextBoton = document.createTextNode("Eliminar");
-                BotonRemove.appendChild(TextBoton);
-                BotonRemove.classList.add("btn_remove");
-                BotonRemove.addEventListener("click",(e)=>{ BTN_Eliminar(e, dato.id)}  );
-                TH2.appendChild(BotonRemove);
-                TR.appendChild(TH2);
-                cuerpoTabla.appendChild(TR);
+            const TH2 =document.createElement('th');
+            let BotonRemove = document.createElement("button");
+            const TextBoton = document.createTextNode("Eliminar");
+            BotonRemove.appendChild(TextBoton);
+            BotonRemove.classList.add("btn_remove");
+            BotonRemove.addEventListener("click",(e)=>{ BTN_Eliminar(e, dato.id)}  );
+            TH2.appendChild(BotonRemove);
+            TR.appendChild(TH2);
+            cuerpoTabla.appendChild(TR);
             
         }
-    let total = document.getElementById("ttl");
-        total.innerHTML = dineroTotal;
-    let banco = document.getElementById("bn");
-        banco.innerHTML = dineroBanco;
-    let efectivo = document.getElementById("ef");
-        efectivo.innerHTML = dineroEfectivo;
-
+        CalcularValores();
+        ultimosMovimientos();
 
 }
 
@@ -252,6 +251,8 @@ function BTN_Eliminar(e,IdInfo){
        
         indice++
     }
+    CalcularValores();
+    ultimosMovimientos();
 
 }
 
@@ -260,8 +261,6 @@ function ActualizarTabla(info){
     /**
      Actualiza la tabla cada vez que el usuario agrega un dato
      */
-     CalcularValores();
-
     let cuerpoTabla = document.getElementById("cuerpoTabla");
     const TR = document.createElement('tr');
            for(const propiedad in info){
@@ -283,19 +282,19 @@ function ActualizarTabla(info){
                 BotonRemove.addEventListener("click",(e)=>{ BTN_Eliminar(e, info.id)}  );
                 TH2.appendChild(BotonRemove);
                 TR.appendChild(TH2);
-            
             cuerpoTabla.appendChild(TR);
-            let total = document.getElementById("ttl");
-            total.innerHTML = dineroTotal;
-            let banco = document.getElementById("bn");
-            banco.innerHTML = dineroBanco;
-            let efectivo = document.getElementById("ef");
-            efectivo.innerHTML = dineroEfectivo;
+            ultimosMovimientos();
+            CalcularValores();
 }
 
+
+
 /* ------------------------- Funciones el MODAL ---------------------------*/
+
 let btn_addIngreso = document.getElementById("addIngresos");
 btn_addIngreso.addEventListener("click", abrirModal);
+let btn_addIngreso2 = document.getElementById("addIngresos2");
+btn_addIngreso2.addEventListener("click", abrirModal);
 
 let btn_cerrarModal = document.getElementById("btn_cerrarModal");
 btn_cerrarModal.addEventListener("click", cerrarModal); 
@@ -331,3 +330,4 @@ function CambiarColorOriginal(){
     btnGuardar.classList.remove('btn_guardar_ok', 'btn_guardar_error');
     
 }
+
