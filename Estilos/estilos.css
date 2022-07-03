@@ -8,17 +8,96 @@
     
 }
 
+/******************* Encabezados ***************************/
+
 header{
   
     box-sizing: border-box;
     width: 100%;
-    height: 300px;
-    /*border: 1px solid black;*/
+    height: 500px;
     background: #283048;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #859398, #283048);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #859398, #283048); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
 
 }
+
+    .header2{
+        height: 150px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        justify-items: normal;
+        transition: height 2.5s;
+    }
+
+
+.encabezado{
+    width: auto;
+    height: 200px;
+    display: flex;
+    flex-direction: row;
+    flex: 1 1 auto;
+    gap: 120px;
+    align-items: center;
+    justify-content: space-around;
+    padding-top: 25px;
+        
+}
+
+        .encabezado2{
+          flex-direction: column;
+          justify-content: space-between;
+          padding-top: 15px;
+
+        }
+
+.encabezado-texto{
+    color: whitesmoke;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    justify-content: space-around;
+            
+}
+    .encabezado-texto p{
+        padding: 5px;
+        font-size: larger;
+    }
+            .encabezado-texto2{
+
+                display: none;
+            }
+.encabezado-imagen{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+
+}
+.img{
+   /* width: 85%;*/
+   padding: 0px;
+   clip-path: circle(30% at center);
+   transition: clip-path 2s;
+}
+
+.titulo{
+    width: auto;
+    display: flex;
+    flex: 1 1 auto;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    color: #c9e7eb;
+    padding-top: 25px;
+    font-size: 40px;
+        
+    }
+    
+    
 body{
     
     width: auto;
@@ -26,6 +105,76 @@ body{
     margin:0px;
     background-image: radial-gradient(circle at 50% -20.71%, #cbe7e1 0, #cae7e3 6.25%, #c9e7e6 12.5%, #c9e7e8 18.75%, #c9e7eb 25%, #c9e7ed 31.25%, #cae6ef 37.5%, #cbe6f1 43.75%, #cde5f2 50%, #cfe4f3 56.25%, #d1e4f4 62.5%, #d4e3f5 68.75%, #d7e2f5 75%, #dae1f5 81.25%, #dde0f4 87.5%, #e0e0f4 93.75%, #e3dff2 100%);
 }
+
+
+/******************* Estilos de presentacion de ultimos movimientos ************************/
+.contenedorMovimientos{
+   
+    width: auto;
+    margin: 20px;
+    padding: 15px;
+    height: 300px;
+    
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 25px;
+}
+    .card{
+        border: solid 5px rgb(216, 245, 247);
+        border-radius: 25px;
+        background-color:whitesmoke;
+        height: 250px;
+        width: 250px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
+    }
+        .cardBoton{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: auto;
+        }
+        .cardInfo{
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            padding: 5px;
+        }
+        .cardTitulo{
+           
+            width: 100%;
+            height: 15%;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-size: 18px;
+            font-weight: 200;
+            text-align: center;
+            padding: auto;
+
+        }
+        .cardContenido{
+           
+            width: 100%;
+            height: 75%;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            padding-left: 5px;
+            padding-top: 5px;
+
+        }
+
+.contenedor1{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    gap: 10px;
+    padding: 5px;
+    margin: 5px;
+
+
+}
+
 
 .btn_add{
 
